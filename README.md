@@ -1,24 +1,36 @@
-# contact-book
+# Книга Контактов
 
-## Project setup
-```
-yarn install
+# Установка
+
+```bash
+yarn
 ```
 
-### Compiles and hot-reloads for development
-```
+# Запустить в режиме разработки
+
+```bash
 yarn serve
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
+# О архитектуре
 
-### Lints and fixes files
-```
-yarn lint
-```
+- Приложение тестовое и маленькое, по этому я не стал использовать Vuex, а заменил его на шаблон Наблюдатель(EventBus для Vue).
+- Принципы SOLID, DRY, YAGNI, KISS соблюдены в должной мере, как мне кажется
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# Сущности
+
+**ContactManager** - Абстракция для контактов
+
+**RegularContact** - Реализация ContactManager основана на localStorage или любой сущности которая соответсвует Storage
+
+**History** - Абстракция для истории состояний
+
+**RegularHistory** - Реализация History основана на localStorage или любой сущности которая соответсвует Storage
+
+**CHProx** - Прокси для ContactManager, по сути, следит за изменениями контактов и заносит их в историю
+
+**StorageObserver** - EventBus который следит за сменой состояни History, на него подписаны вьюшки
+
+# PS
+
+Делалось быстро, и я больше по React, если какие то лучшие решения по Vue пишите:)
